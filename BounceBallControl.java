@@ -28,7 +28,11 @@ public class BounceBallControl extends Application {
       else if (e.getCode() == KeyCode.DOWN) {
         ballPane.decreaseSpeed();
       }
-      
+      else if(e.getCode() == KeyCode.SPACE){
+            BallPane ball = new BallPane();
+            ballPane.getChildren().add(ball);
+            ball.play();
+      }
     });
 
     // Create a scene and place it in the stage
