@@ -1,5 +1,6 @@
 //U10416036
 
+import java.util.Random;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -9,13 +10,15 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 public class BounceBallControl extends Application {
   
-  BallPane ballPane = new BallPane(); // Create a ball pane
+  
   public void start(Stage primaryStage) {
+    BallPane ballPane = new BallPane(); // Create a ball pane
     // Pause and resume animation
     ballPane.setOnMousePressed(e -> ballPane.pause());
     ballPane.setOnMouseReleased(e -> ballPane.play());
@@ -27,11 +30,6 @@ public class BounceBallControl extends Application {
       } 
       else if (e.getCode() == KeyCode.DOWN) {
         ballPane.decreaseSpeed();
-      }
-      else if(e.getCode() == KeyCode.SPACE){
-            BallPane ball = new BallPane();
-            ballPane.getChildren().add(ball);
-            ball.play();
       }
     });
 
@@ -61,7 +59,10 @@ class BallPane extends Pane {
   private Timeline animation;
 
   public BallPane() {
-    circle.setFill(Color.BLACK); // Set ball color
+    Paint[] color = {Color.RED,Color.DARKORANGE,Color.YELLOW,Color.GREEN,Color.BLUE,Color.BLUEVIOLET,Color.GREENYELLOW,Color.PLUM,Color.TURQUOISE}; 
+    Random r = new Random();
+    int c =  r.nextInt(9);
+    circle.setFill((Paint)color[c]); // Set ball color
     getChildren().add(circle); // Place a ball into this pane
 
     // Create an animation for moving the ball
@@ -95,10 +96,19 @@ class BallPane extends Pane {
   protected void moveBall() {
     // Check boundaries
     if (x < radius || x > getWidth() - radius) {
-      dx *= -1; // Change ball move direction
+        
+        dx *= -1; // Change ball move direction
+        Paint[] color = {Color.RED,Color.DARKORANGE,Color.YELLOW,Color.GREEN,Color.BLUE,Color.BLUEVIOLET,Color.GREENYELLOW,Color.PLUM,Color.TURQUOISE}; 
+        Random r = new Random();
+        int c =  r.nextInt(9);
+        circle.setFill((Paint)color[c]);
     }
     if (y < radius || y > getHeight() - radius) {
-      dy *= -1; // Change ball move direction
+        dy *= -1; // Change ball move direction
+        Paint[] color = {Color.RED,Color.DARKORANGE,Color.YELLOW,Color.GREEN,Color.BLUE,Color.BLUEVIOLET,Color.GREENYELLOW,Color.PLUM,Color.TURQUOISE}; 
+        Random r = new Random();
+        int c =  r.nextInt(9);
+        circle.setFill((Paint)color[c]);
     }
 
     // Adjust ball position
